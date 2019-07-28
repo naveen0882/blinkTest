@@ -1,0 +1,209 @@
+{
+  "variables": [],
+  "info": {
+    "name": "blinkhealth",
+    "_postman_id": "d7c46f04-45a9-9d81-8551-45c2f0c5184c",
+    "description": "Blinkayles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "047a4088-4f6b-dfdd-8e61-b0e645f3190d",
+      "name": "/game",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "{{host}}/game",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"player1\": \"{{player1}}\",\n  \"player2\": \"{{player2}}\"\n}"
+        },
+        "description": "Crete a new game, will overwrite an existing game.\n\nIt will check the users against an active tournament if applicable.\n\nOnly one game can be running at a time."
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "5d049854-0982-54f4-068e-192aaa969a9b",
+      "name": "/move/player/pin1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "{{host}}/move/{{player1}}/1",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "description": "If you have an existing game post a move for a player hitting a single pin.\n\nIF the player wins and there's an active tournament it will remove the loser from the tournament active list."
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "cc88cbb9-44f6-93ed-c506-dec2f0f44733",
+      "name": "/move/player/pin1,pin2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "{{host}}/move/{{player2}}/1,2",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "description": "If you have an existing game post a move for a player hitting a two pins.\n\nIF the player wins and there's an active tournament it will remove the loser from the tournament active list."
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "bb7bbc40-5ef5-261e-dd26-d98ae3d29bc8",
+      "name": "/tounament",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "{{host}}/tournament",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"players\": [\"p1\", \"p2\", \"p3\"]\n}"
+        },
+        "description": "Create a new tournament. This will overwrite an existing tournament.\n\nOnly one tournament can be running at one time."
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "a2ca49be-eb61-d24a-ab02-2620e0f4b5ee",
+      "name": "/tounament",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "{{host}}/tournament",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"players\": [\"p1\", \"p2\", \"p3\", \"p4\"]\n}"
+        },
+        "description": "Get a tournament active and remove player lists and the winner if applicable."
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "856c52bc-d9d7-a892-2e95-563e40f3b1b4",
+      "name": "/tounament/players/{{player1}}",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "{{host}}/tournament/players/{{player1}}",
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "description": "Remove an active player from an active tournament. Helpful for testing and if a player withdraws from the competition."
+      },
+      "response": []
+    }
+  ]
+}
